@@ -54,15 +54,23 @@ fontLoader.load(
         // material.matcap = matcapTexture
         // textMaterial.wireframe = false
         const donutGeometry = new THREE.TorusBufferGeometry(0.3,0.2,20,45)
-        const material = new THREE.MeshMatcapMaterial({matcap:matcapTexture})
-
-        const text = new THREE.Mesh(textGeometry, material)
-        scene.add(text)
-
+        
+        
+        
+        
+        const items = ['red', 'blue', 'yellow', 'orange', 'pink', 'pink']
         
         for (let i = 0; i < 300; i++){
+            const material = new THREE.MeshMatcapMaterial({
+                matcap:matcapTexture,
+                // color:'red'
             
+            })
+            const text = new THREE.Mesh(textGeometry, material)
             const donut = new THREE.Mesh(donutGeometry, material)
+            let item = items[Math.floor(Math.random()*items.length)];
+            material.color = new THREE.Color(item)
+
             donut.position.x = (Math.random() - 0.5) * 10
             donut.position.y = (Math.random() - 0.5) * 10
             donut.position.z = (Math.random() - 0.5) * 10
@@ -72,14 +80,15 @@ fontLoader.load(
             donut.scale.x = scale
             donut.scale.y = scale
             donut.scale.z = scale
+            scene.add(text)
             scene.add(donut)
         }
     }
 )
 
 //axisHelper
-const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
+// const axesHelper = new THREE.AxesHelper()
+// scene.add(axesHelper)
 
 /**
  * Object
