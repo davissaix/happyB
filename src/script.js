@@ -62,7 +62,7 @@ fontLoader.load(
         
         for (let i = 0; i < 300; i++){
             const material = new THREE.MeshMatcapMaterial({
-                matcap:matcapTexture,
+                // matcap:matcapTexture,
                 // color:'red'
             
             })
