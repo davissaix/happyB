@@ -53,7 +53,7 @@ fontLoader.load(
         // const material = new THREE.MeshMatcapMaterial()
         // material.matcap = matcapTexture
         // textMaterial.wireframe = false
-        const donutGeometry = new THREE.TorusBufferGeometry(0.3,0.2,20,45)
+        // const donutGeometry = new THREE.TorusBufferGeometry(0.3,0.2,20,45)
         
         
         
@@ -67,21 +67,21 @@ fontLoader.load(
             
             })
             const text = new THREE.Mesh(textGeometry, material)
-            const donut = new THREE.Mesh(donutGeometry, material)
+            // const donut = new THREE.Mesh(donutGeometry, material)
             let item = items[Math.floor(Math.random()*items.length)];
             material.color = new THREE.Color(item)
 
-            donut.position.x = (Math.random() - 0.5) * 10
-            donut.position.y = (Math.random() - 0.5) * 10
-            donut.position.z = (Math.random() - 0.5) * 10
-            donut.rotation.y = Math.random() * Math.PI
-            donut.rotation.z = Math.random() * Math.PI
-            const scale = Math.random()
-            donut.scale.x = scale
-            donut.scale.y = scale
-            donut.scale.z = scale
+            // donut.position.x = (Math.random() - 0.5) * 10
+            // donut.position.y = (Math.random() - 0.5) * 10
+            // donut.position.z = (Math.random() - 0.5) * 10
+            // donut.rotation.y = Math.random() * Math.PI
+            // donut.rotation.z = Math.random() * Math.PI
+            // const scale = Math.random()
+            // donut.scale.x = scale
+            // donut.scale.y = scale
+            // donut.scale.z = scale
             scene.add(text)
-            scene.add(donut)
+            // scene.add(donut)
         }
     }
 )
@@ -122,6 +122,60 @@ window.addEventListener('resize', () =>
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
+for (let i = 0; i < 300; i++){
+    const material = new THREE.MeshMatcapMaterial({
+        matcap:matcapTexture,
+        // color:'red'
+    
+    })
+
+    const items = ['red', 'blue', 'yellow', 'orange', 'pink', 'pink']
+    const donutGeometry = new THREE.TorusBufferGeometry(0.3,0.2,20,45)
+    const donut = new THREE.Mesh(donutGeometry, material)
+    let item = items[Math.floor(Math.random()*items.length)];
+    material.color = new THREE.Color(item)
+
+    var precision = 100; // 2 decimals
+    var randomnum = Math.floor(Math.random() * 
+    (10 * precision - 1 * precision) + 1 * precision) / (1*precision)
+
+    donut.position.x = (Math.random() - 0.5) * 10
+    donut.position.y = (Math.random() - 0.5) * 10
+    donut.position.z = (Math.random() - 0.5) * 10
+    donut.rotation.y = Math.random() * Math.PI
+    donut.rotation.z = Math.random() * Math.PI
+    const scale = Math.random()
+    donut.scale.x = scale
+    donut.scale.y = scale
+    donut.scale.z = scale
+    
+    scene.add(donut)
+    const clock = new THREE.Clock()
+    const tick = () =>
+{
+    const elapsedTime = clock.getElapsedTime()
+    
+    
+    donut.rotation.x = (elapsedTime * randomnum + randomnum ) 
+    // donut.rotation.y = (elapsedTime + randomnum) * scale
+    // donut.rotation.z = (elapsedTime + randomnum)* scale
+
+    //animation donut
+    // donut.rotation.x = elapsedTime
+   
+        // Update controls
+    // controls.update()
+
+    // Render
+    // renderer.render(scene, camera)
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+    
+}
 
 /**
  * Camera
@@ -151,11 +205,16 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  */
 const clock = new THREE.Clock()
 
+
+
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
-    // Update controls
+    //animation donut
+    // donut.rotation.x = elapsedTime
+   
+        // Update controls
     controls.update()
 
     // Render
